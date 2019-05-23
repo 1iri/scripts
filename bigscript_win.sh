@@ -75,6 +75,11 @@ itunes_ver=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13
 mv bigscript-dl/`ls bigscript-dl/ | grep -i itunes` bigscript-dl/`ls bigscript-dl/ | grep -i itunes | sed 's/\.exe.*$//'`_${itunes_ver}.exe
 echo
 
+echo "downloading Scratch Desktop..."
+scratch_url=`curl -s https://scratch.mit.edu/js/download.bundle.js | grep "downloads" |grep -Eo "(http|https)://[a-zA-Z0-9\%./?=_-]*" | head -1`
+wget -q --show-progress -P ./bigscript-dl $scratch_url
+echo
+
 echo "downloading Java 32 & 64bit..."
 java32=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/535.6.2 (KHTML, like Gecko) Version/5.2 Safari/535.6.2" https://www.java.com/en/download/manual.jsp | /usr/bin/grep "Download Java software for Windows Offline" | /usr/bin/head -1 | /usr/bin/awk -F "\"" '{ print $4 }'`
 java64=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/535.6.2 (KHTML, like Gecko) Version/5.2 Safari/535.6.2" https://www.java.com/en/download/manual.jsp | /usr/bin/grep "Download Java software for Windows (64-bit)" | /usr/bin/head -1 | /usr/bin/awk -F "\"" '{ print $4 }'`
