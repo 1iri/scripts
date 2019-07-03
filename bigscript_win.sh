@@ -130,4 +130,3 @@ esac
 endscript=$(date +%s.%N)
 echo "script finished running in $(python -c "print '%u minutes and %02u seconds' % ((${endscript} - ${startscript})/60, (${endscript} - ${startscript})%60)")"
 echo
-
