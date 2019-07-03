@@ -76,7 +76,7 @@ mv bigscript-dl/`ls bigscript-dl/ | grep -i itunes` bigscript-dl/`ls bigscript-d
 echo
 
 echo "downloading Scratch Desktop..."
-scratch_url=`curl -s https://scratch.mit.edu/js/download.bundle.js | grep "downloads" |grep -Eo "(http|https)://[a-zA-Z0-9\%./?=_-]*" | head -1`
+scratch_url=`curl -s https://scratch.mit.edu/js/download.bundle.js | grep -Eo "/Scratch|Desktop\/?.*/" |grep -Eo "(http|https)://[a-zA-Z0-9\%./?=_-]*" | head -1`
 wget -q --show-progress -P ./bigscript-dl $scratch_url
 echo
 
