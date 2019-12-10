@@ -46,7 +46,7 @@ wget -q --show-progress -P ./bigscript-dl $zip_url
 echo
 
 echo "downloading WinRAR..."
-rar_url=`/usr/bin/curl -s https://rarlab.com/download.htm | /usr/bin/grep x64 | /usr/bin/head -1 | /usr/bin/awk -F "\"" '{ print $2 }'`
+rar_url=`/usr/bin/curl -s https://www.rarlab.com/download.htm | /usr/bin/grep x64 | /usr/bin/head -1 | /usr/bin/awk -F "\"" '{ print $2 }'`
 rar_url="https://rarlab.com/${rar_url}"
 wget -q --show-progress -P ./bigscript-dl $rar_url
 echo
@@ -75,8 +75,14 @@ itunes_ver=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13
 mv bigscript-dl/`ls bigscript-dl/ | grep -i itunes` bigscript-dl/`ls bigscript-dl/ | grep -i itunes | sed 's/\.exe.*$//'`_${itunes_ver}.exe
 echo
 
+echo "downloading Arduino..."
+arduino_url=`curl -s https://www.arduino.cc/en/Main/Software | grep exe | awk -F'=/' '{print $2}' |awk -F'"' '{print $1}'`
+arduino_url="https://downloads.arduino.cc/${arduino_url}"
+wget -q --show-progress -P ./bigscript-dl $arduino_url
+echo
+
 echo "downloading Scratch Desktop..."
-scratch_url=`curl -s https://scratch.mit.edu/js/download.bundle.js | grep -Eo "/Scratch|Desktop\/?.*/" |grep -Eo "(http|https)://[a-zA-Z0-9\%./?=_-]*" | head -1`
+scratch_url=`curl -s https://scratch.mit.edu/js/download.bundle.js | grep -Eo "/Scratch|Desktop\/?.*/" |grep -Eo "(http|https)://[a-zA-Z0-9\%./?=_-]*" | grep exe`
 wget -q --show-progress -P ./bigscript-dl $scratch_url
 echo
 
@@ -109,13 +115,15 @@ reader_url="http://ardownload.adobe.com/pub/adobe/reader/win/AcrobatDC/${reader_
 wget -q --show-progress -P ./bigscript-dl $reader_url
 echo
 
-echo "downloading Adobe Flash ActiveX, NPAPI & PPAPI..."
+echo "downloading Adobe Flash ActiveX, NPAPI & PPAPI, Shockwave..."
 flash_ver=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/535.6.2 (KHTML, like Gecko) Version/5.2 Safari/535.6.2" https://get.adobe.com/flashplayer | grep "<strong>Version" | /usr/bin/sed -e 's/<[^>][^>]*>//g' | /usr/bin/awk '{print $2}'`
 flash_url="https://fpdownload.adobe.com/pub/flashplayer/pdc/${flash_ver}/install_flash_player_ax.exe"
 wget -q --show-progress -P ./bigscript-dl $flash_url
 flash_url="https://fpdownload.adobe.com/pub/flashplayer/pdc/${flash_ver}/install_flash_player.exe"
 wget -q --show-progress -P ./bigscript-dl $flash_url
 flash_url="https://fpdownload.adobe.com/pub/flashplayer/pdc/${flash_ver}/install_flash_player_ppapi.exe"
+wget -q --show-progress -P ./bigscript-dl $flash_url
+flash_url="http://fpdownload.macromedia.com/get/shockwave/default/english/win95nt/latest/Shockwave_Installer_Full.exe"
 wget -q --show-progress -P ./bigscript-dl $flash_url
 flash_ver=`echo ${flash_ver} | sed 's/\./_/g'`
 for file in ./bigscript-dl/install_flash_player*; do
