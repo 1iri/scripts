@@ -1,1 +1,2 @@
 rsync -avzP --delete-after --delete --exclude "source" rsync://slackware.mirrors.tds.net/slackware/slackware64-current slck/
+.vimrc: syntax on set ruler set ic
