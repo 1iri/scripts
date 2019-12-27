@@ -3,3 +3,7 @@ rsync -avzP --delete-after --delete --exclude "source" rsync://slackware.mirrors
 .vimrc: syntax on set ruler set ic
 
 /usr/share/mkinitrd/mkinitrd_command_generator.sh -k 5.4.5
+
+ssh port forward: ssh -l username -CL 13389:nat_localhost:3389 remote_sshhost -p ssh_port
+
+reverse ssh port forward: /usr/local/bin/autossh -f -N -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "PubkeyAuthentication=yes" -o "PasswordAuthentication=no" -i /root/.ssh/id_rsa -R 31723:localhost:22 username@remote_sshhost
