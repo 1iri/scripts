@@ -7,3 +7,8 @@ rsync -avzP --delete-after --delete --exclude "source" rsync://slackware.mirrors
 ssh port forward: ssh -l username -CL 13389:nat_localhost:3389 remote_sshhost -p ssh_port
 
 reverse ssh port forward: /usr/local/bin/autossh -f -N -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -o "PubkeyAuthentication=yes" -o "PasswordAuthentication=no" -i /root/.ssh/id_rsa -R 31723:localhost:22 username@remote_sshhost
+
+vlan slackware:
+modprobe 8021q
+vconfig add eth0 vlan_id_number
+ifconfig eth0.vlan_id_number 10.0.0.1 netmask 255.255.255.0 up
