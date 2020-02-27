@@ -12,3 +12,5 @@ vlan slackware:
 modprobe 8021q
 vconfig add eth0 vlan_id_number
 ifconfig eth0.vlan_id_number 10.0.0.1 netmask 255.255.255.0 up
+
+sudo /usr/bin/pkgbuild --root path_where_app_is --identifier com.company.appname --install-location "/path/whereto/install" appname.pkg
