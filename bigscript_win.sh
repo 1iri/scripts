@@ -131,8 +131,9 @@ for file in ./bigscript-dl/install_flash_player*; do
 done
 echo
 
+#curl -s 'https://education.smarttech.com/smart_api/notebookdownloads/software' -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{"CurrentDownloads":true}' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "admin.zip" | head -1
 case "$choiceoff" in 
-	  y|Y ) wget -q --show-progress -P ./bigscript-dl `curl -s 'https://education.smarttech.com/smart_api/notebookdownloads/software' -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{"CurrentDownloads":true}' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "admin.zip" | head -1`; echo;
+	  y|Y ) wget -q --show-progress -P ./bigscript-dl `curl -s 'https://www.smarttech.com/_api/SoftwareDownloadTypes?FolderID=68EC019A-56BC-4E16-8464-6463C51D65D0' | grep -Eo "(http|https)://[a-zA-Z0-9./?=_-]*" | grep "admin.zip" | head -1`; echo;
 esac
 
 endscript=$(date +%s.%N)
