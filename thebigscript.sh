@@ -29,7 +29,8 @@ echo "finished $1-1.0.pkg"
 startscript=$(date +%s)
 
 #Adobe Reader DC Latest Version
-ardclv=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15" https://get.adobe.com/reader/ | grep "<strong>Version" | /usr/bin/sed -e 's/<[^>][^>]*>//g' | /usr/bin/awk '{print $2}' | sed -e 's/[.]//g' -e 's/20//'`
+#ardclv=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15" https://get.adobe.com/reader/ | grep "<strong>Version" | /usr/bin/sed -e 's/<[^>][^>]*>//g' | /usr/bin/awk '{print $2}' | sed -e 's/[.]//g' -e 's/20//'`
+ardclv=`/usr/bin/curl -s -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.1.2 Safari/605.1.15" https://get2.adobe.com/reader/ | grep "for_Mac_Intel" | grep -Eo '[0-9]+' | xargs | sed 's/ //g' | cut -c 3-`
 url_ardclv="http://ardownload.adobe.com/pub/adobe/reader/mac/AcrobatDC/${ardclv}/AcroRdrDC_${ardclv}_MUI.dmg"
 echo downloading Adobe Reader DC...
 /usr/bin/curl -# -o /tmp/reader.dmg ${url_ardclv}
