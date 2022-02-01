@@ -16,3 +16,6 @@ ifconfig eth0.vlan_id_number 10.0.0.1 netmask 255.255.255.0 up
 sudo /usr/bin/pkgbuild --root path_where_app_is --identifier com.company.appname --install-location "/path/whereto/install" appname.pkg
 
 sudo nvram StartupMute=%00
+
+getconf DARWIN_USER_CACHE_DIR
+find /var/folders/ml/0lzbypx15rv_qrqjxzsbn83w0000gn/C/com.apple.appstoreagent -type f -name "*.pkg" -exec chflags uchg "{}" \;
