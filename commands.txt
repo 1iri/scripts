@@ -20,3 +20,6 @@ sudo nvram StartupMute=%00
 getconf DARWIN_USER_CACHE_DIR
 find /var/folders/ml/0lzbypx15rv_qrqjxzsbn83w0000gn/C/com.apple.appstoreagent -type f -name "*.pkg" -exec chflags uchg "{}" \;
 
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -allowAccessFor -specifiedUsers
+sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -access -on -privs -DeleteFiles -ControlObserve -TextMessages -OpenQuitApps -GenerateReports -RestartShutDown -SendFiles -ChangeSettings -users admin
+
