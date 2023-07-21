@@ -1,4 +1,4 @@
-# powershell.exe -noprofile -ExecutionPolicy Unrestricted -File PSUpdates.ps1
+#powershell.exe -noprofile -ExecutionPolicy Unrestricted -File PSUpdates.ps1
 
 $UpdateSvc = New-Object -ComObject Microsoft.Update.ServiceManager
 $UpdateSvc.AddService2("7971f918-a847-4430-9279-4a52d1efe18d",7,"")
@@ -23,7 +23,7 @@ $Updates = $SearchResult.Updates
 	
 #Show available Drivers...
 #$Updates | select Title, DriverModel, DriverVerDate, Driverclass, DriverManufacturer | fl
-#Write-Output($Updates | select Title, DriverModel | fl) >> c:\script\winupdates.txt
+#Write-Output($Updates | select Title, DriverModel | fl)
 
 $UpdatesToDownload = New-Object -Com Microsoft.Update.UpdateColl
 $updates | % { $UpdatesToDownload.Add($_) | out-null }
